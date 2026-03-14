@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK TechFix - Phone Repair & Accessories Store Lusaka</title>
+    <meta name="description" content="Lusaka's fastest phone repair service + premium mobile accessories. Shop phones, cases, chargers, screen protectors. Free delivery in Lusaka.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========== ROOT VARIABLES ========== */
+        :root {
+            --primary: #2a5bd7;
+            --primary-dark: #1e429f;
+            --primary-light: #e0e7ff;
+            --secondary: #10b981;
+            --secondary-light: #d1fae5;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --dark: #1f2937;
+            --dark-light: #4b5563;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+        }
+
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+            overflow-x: hidden;
+        }
+
+        /* ========== UTILITY CLASSES ========== */
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #d97706;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #0da271;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in { animation: fadeIn 1s ease forwards; }
+        .slide-in-left { animation: slideInLeft 1s ease forwards; }
+        .slide-in-right { animation: slideInRight 1s ease forwards; }
+        .pulse { animation: pulse 2s infinite; }
+        .float { animation: float 3s ease-in-out infinite; }
+
+        /* ========== FLOATING ELEMENTS ========== */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #25D366;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .floating-whatsapp .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--danger);
+            color: var(--white);
+            font-size: 0.8rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        /* ========== CART SIDEBAR ========== */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 25px;
+            border-bottom: 2px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--danger-light);
+            color: var(--danger);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            background-color: var(--danger);
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 15px;
+            position: relative;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .remove-item {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--danger-light);
+            color: var(--danger);
+            border: none;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            background-color: var(--danger);
+            color: var(--white);
+        }
+
+        .cart-footer {
+            padding: 25px;
+            border-top: 2px solid var(--gray-light);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--gray);
+        }
+
+        .empty-cart i {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        /* ========== AVAILABILITY INDICATOR ========== */
+        .availability-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .availability-indicator.online .status-dot {
+            background-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.3rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger);
+            color: var(--white);
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            padding: 120px 0 80px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(42, 91, 215, 0.08) 0%, rgba(42, 91, 215, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 35px;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover .stat-icon {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0) rotateX(0);
+        }
+
+        /* ========== STORE CATEGORIES ========== */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .category-card:hover::before {
+            opacity: 0.9;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-icon,
+        .category-name {
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .category-card:hover .category-icon,
+        .category-card:hover .category-name {
+            color: var(--white);
+        }
+
+        .category-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* ========== PRODUCTS SECTION ========== */
+        .products-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .products-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .products-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .filter-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--gray-light);
+            background-color: transparent;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--gray-light);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .product-badge.sale {
+            background: linear-gradient(135deg, var(--danger), #f87171);
+        }
+
+        .product-badge.new {
+            background: linear-gradient(135deg, var(--secondary), #34d399);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .product-card:hover .product-image::after {
+            left: 100%;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-rating {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 1rem;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        /* ========== REPAIR SERVICES SECTION ========== */
+        .repair-services {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light), var(--white));
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+        }
+
+        /* ========== BUNDLE OFFERS ========== */
+        .bundle-offers {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .bundle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .bundle-card {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .bundle-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .bundle-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .bundle-tag {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .bundle-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .bundle-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .bundle-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .bundle-price small {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: normal;
+        }
+
+        .bundle-image {
+            width: 150px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin: 20px;
+            transition: var(--transition);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(42, 91, 215, 0.1);
+            position: absolute;
+            top: -30px;
+            left: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--white);
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        /* ========== LUSAKA DELIVERY ========== */
+        .delivery-info {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+        }
+
+        .delivery-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .delivery-text {
+            flex: 1;
+        }
+
+        .delivery-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .delivery-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .delivery-features li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .delivery-features i {
+            color: var(--secondary);
+        }
+
+        .delivery-map {
+            flex: 1;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .map-pin::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* ========== FAQ SECTION ========== */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--light);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #111827);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-info:hover {
+            transform: translateX(5px);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* ========== NOTIFICATION TOAST ========== */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--secondary), #059669);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10001;
+            animation: slideInRight 0.3s ease;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1200px) {
+            .hero-text h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text p { margin: 0 auto 35px; }
+            .hero-btns { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            
+            .delivery-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .delivery-features li { justify-content: center; }
+            
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .section-title h2 { font-size: 2.2rem; }
+            .products-header { flex-direction: column; text-align: center; }
+            .products-header h2::after { left: 50%; transform: translateX(-50%); }
+            .filter-btns { justify-content: center; }
+            .bundle-card { flex-direction: column; }
+            .bundle-image { width: 100%; height: 100px; }
+            .availability-indicator { top: 10px; right: 10px; font-size: 0.8rem; padding: 8px 12px; }
+        }
+
+        @media (max-width: 576px) {
+            .hero { padding: 100px 0 60px; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .stat-item { justify-content: center; }
+            .products-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .floating-whatsapp { width: 60px; height: 60px; font-size: 1.8rem; bottom: 20px; right: 20px; }
+            .cart-sidebar { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Availability Indicator -->
+    <div class="availability-indicator online" id="availabilityIndicator">
+        <span class="status-dot"></span>
+        <span id="statusText">Online - Fast Delivery</span>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/260963414738?text=Hello%20CK%20TechFix!%20I'm%20interested%20in%20your%20products%20and%20repair%20services." class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="badge">5</span>
+    </a>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">ZMW 0</span>
+            </div>
+            <button class="btn btn-whatsapp checkout-btn" id="checkoutBtn">
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">CK</div>
+                <div class="logo-text">CK <span>TechFix</span></div>
+            </a>
+
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#store">Store</a>
+                <a href="#repair">Repair Services</a>
+                <a href="#offers">Special Offers</a>
+                <a href="#contact">Contact</a>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text fade-in">
+                <h1>Your One-Stop <span>Phone Repair & Accessories</span> Store in Lusaka</h1>
+                <p>30-minute phone repair + premium mobile accessories delivered to your doorstep. Fast, reliable, and affordable service across Lusaka.</p>
+                
+                <div class="hero-btns">
+                    <a href="#store" class="btn btn-accent"><i class="fas fa-store"></i> Shop Now</a>
+                    <a href="https://wa.me/260963414738" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>30-Minute</h4>
+                            <p>Repair Service</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-truck"></i></div>
+                        <div>
+                            <h4>Free Delivery</h4>
+                            <p>Lusaka (ZMW 50+)</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <h4>6-Month</h4>
+                            <p>Warranty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image slide-in-right">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px; border-radius: 20px; color: white;">
+                    <i class="fas fa-mobile-alt" style="font-size: 6rem; margin-bottom: 20px;"></i>
+                    <h3 style="font-size: 2rem;">CK TechFix</h3>
+                    <p>Lusaka's #1 Phone Repair & Accessories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Shop by Category</h2>
+                <p>Browse our wide selection of premium phone accessories</p>
+            </div>
+            
+            <div class="category-grid">
+                <div class="category-card" onclick="filterProducts('phones')">
+                    <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="category-name">Mobile Phones</div>
+                </div>
+                <div class="category-card" onclick="filterProducts('cases')">
+                    <div class="category-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="category-name">Phone Cases</div>
+                </div>
+                <div class="category-card" onclick="filterProducts('chargers')">
+                    <div class="category-icon"><i class="fas fa-plug"></i></div>
+                    <div class="category-name">Chargers & Cables</div>
+                </div>
+                <div class="category-card" onclick="filterProducts('protectors')">
+                    <div class="category-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="category-name">Screen Protectors</div>
+                </div>
+                <div class="category-card" onclick="filterProducts('powerbanks')">
+                    <div class="category-icon"><i class="fas fa-battery-full"></i></div>
+                    <div class="category-name">Power Banks</div>
+                </div>
+                <div class="category-card" onclick="filterProducts('audio')">
+                    <div class="category-icon"><i class="fas fa-headphones"></i></div>
+                    <div class="category-name">Audio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="store">
+        <div class="container">
+            <div class="products-header">
+                <h2>Featured Products</h2>
+                <div class="filter-btns">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                    <button class="filter-btn" onclick="filterProducts('phones')">Phones</button>
+                    <button class="filter-btn" onclick="filterProducts('cases')">Cases</button>
+                    <button class="filter-btn" onclick="filterProducts('chargers')">Chargers</button>
+                    <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Repair Services -->
+    <section class="repair-services" id="repair">
+        <div class="container">
+            <div class="section-title">
+                <h2>Phone Repair Services</h2>
+                <p>We repair your phone in 30 minutes right in front of you</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Screen Replacement</h3>
+                    <p>From ZMW 250</p>
+                    <p style="font-size: 0.9rem;">30-minute service • 6-month warranty</p>
+                    <button class="btn btn-outline" style="margin-top: 20px;" onclick="bookRepair('Screen Replacement')">Book Now</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-battery-full"></i></div>
+                    <h3>Battery Replacement</h3>
+                    <p>From ZMW 180</p>
+                    <p style="font-size: 0.9rem;">20-minute service • 6-month warranty</p>
+                    <button class="btn btn-outline" style="margin-top: 20px;" onclick="bookRepair('Battery Replacement')">Book Now</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-plug"></i></div>
+                    <h3>Charging Issues</h3>
+                    <p>From ZMW 150</p>
+                    <p style="font-size: 0.9rem;">25-minute service • 6-month warranty</p>
+                    <button class="btn btn-outline" style="margin-top: 20px;" onclick="bookRepair('Charging Issues')">Book Now</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tint"></i></div>
+                    <h3>Water Damage</h3>
+                    <p>From ZMW 300</p>
+                    <p style="font-size: 0.9rem;">Diagnosis & repair • 3-month warranty</p>
+                    <button class="btn btn-outline" style="margin-top: 20px;" onclick="bookRepair('Water Damage')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bundle Offers -->
+    <section class="bundle-offers" id="offers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Special Bundle Offers</h2>
+                <p>Save more with our curated bundles</p>
+            </div>
+            
+            <div class="bundle-grid">
+                <div class="bundle-card">
+                    <div class="bundle-content">
+                        <span class="bundle-tag">Save 20%</span>
+                        <h3>Phone + Case Bundle</h3>
+                        <p>Get any phone with a premium case at a special price</p>
+                        <div class="bundle-price">ZMW 1,499 <small>was ZMW 1,799</small></div>
+                        <button class="btn" onclick="addBundleToCart('Phone + Case Bundle', 1499)">Add Bundle to Cart</button>
+                    </div>
+                    <div class="bundle-image">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                </div>
+                
+                <div class="bundle-card">
+                    <div class="bundle-content">
+                        <span class="bundle-tag">Save 25%</span>
+                        <h3>Charging Kit</h3>
+                        <p>Charger + Cable + Power Bank</p>
+                        <div class="bundle-price">ZMW 899 <small>was ZMW 1,199</small></div>
+                        <button class="btn" onclick="addBundleToCart('Charging Kit', 899)">Add Bundle to Cart</button>
+                    </div>
+                    <div class="bundle-image">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Trusted by hundreds of customers in Lusaka</p>
+            </div>
+            
+            <div class="testimonial-slider" id="testimonialSlider">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Bought an iPhone 11 and a case from CK TechFix. Delivered to my office in Woodlands within 2 hours. The phone is perfect and the case is high quality. Highly recommend!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>Chileshe B.</h4>
+                            <p style="color: var(--gray);">Woodlands, Lusaka</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-controls">
+                <button class="slider-btn" onclick="prevTestimonial()"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn" onclick="nextTestimonial()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lusaka Delivery Info -->
+    <section class="delivery-info">
+        <div class="container">
+            <div class="delivery-content">
+                <div class="delivery-text">
+                    <h2>Free Delivery in Lusaka</h2>
+                    <p>Get your items delivered to your doorstep within 2-4 hours</p>
+                    
+                    <ul class="delivery-features">
+                        <li><i class="fas fa-check-circle"></i> Free delivery on orders above ZMW 50</li>
+                        <li><i class="fas fa-check-circle"></i> Same-day delivery within Lusaka</li>
+                        <li><i class="fas fa-check-circle"></i> Track your order in real-time</li>
+                        <li><i class="fas fa-check-circle"></i> Cash on delivery available</li>
+                    </ul>
+                    
+                    <button class="btn btn-secondary" onclick="window.location.href='#store'">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
+                    </button>
+                </div>
+                
+                <div class="delivery-map">
+                    <div class="map-pin" style="top: 30%; left: 25%;"></div>
+                    <div class="map-pin" style="top: 45%; left: 50%;"></div>
+                    <div class="map-pin" style="top: 60%; left: 35%;"></div>
+                    <div class="map-pin" style="top: 35%; left: 70%;"></div>
+                    <div class="map-pin" style="top: 55%; left: 65%;"></div>
+                    
+                    <div style="text-align: center; color: white;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                        <h3>Covering all Lusaka</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our products and services</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How fast is delivery in Lusaka?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        We deliver within 2-4 hours in Lusaka. Orders placed before 3 PM are delivered the same day.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer warranty on products?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! All phones come with 6-month warranty. Accessories have 3-month warranty against defects.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I return a product?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        We have a 7-day return policy for unused items. Contact us within 24 hours of delivery for returns.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you repair all phone brands?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we repair iPhone, Samsung, Huawei, Tecno, Itel, and all major brands.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        We accept cash on delivery, mobile money (Airtel/MTN), and bank transfers.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you have physical shop in Lusaka?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        We operate primarily as a mobile service, but we can meet you at convenient locations in Lusaka.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>CK TechFix</h3>
+                    <p>Lusaka's premier phone repair and accessories store. Fast, reliable, and affordable service since 2023.</p>
+                    
+                    <div class="payment-methods">
+                        <i class="fas fa-mobile-alt" title="Mobile Money"></i>
+                        <i class="fas fa-credit-card" title="Card Payment"></i>
+                        <i class="fas fa-money-bill-wave" title="Cash on Delivery"></i>
+                        <i class="fas fa-university" title="Bank Transfer"></i>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#store">Store</a></li>
+                        <li><a href="#repair">Repair Services</a></li>
+                        <li><a href="#offers">Special Offers</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Warranty Info</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                      </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <p><strong>WhatsApp/Call</strong></p>
+                            <p>+260 96 341 4738</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <i class="far fa-clock"></i>
+                        <div>
+                            <p><strong>Working Hours</strong></p>
+                            <p>Mon-Sat: 08:00 - 18:00<br>Sun: 10:00 - 16:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p><strong>Serving</strong></p>
+                            <p>All Lusaka Areas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 CK TechFix. All rights reserved. | Phone Repair & Accessories Store in Lusaka, Zambia</p>
+                <p style="margin-top: 10px;">Follow us: 
+                    <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-tiktok"></i></a>
+                </p>
+            </div>
+        </div>
+    </footer>
+  <script>
+        // ========== PRODUCT DATABASE ==========
+        const products = [
+            // Phones
+            { id: 1, name: 'iPhone 11', price: 4500, category: 'phones', rating: 4.8, image: '📱', badge: 'new', oldPrice: 5200 },
+            { id: 2, name: 'Samsung A14', price: 2800, category: 'phones', rating: 4.6, image: '📱', badge: 'sale', oldPrice: 3200 },
+            { id: 3, name: 'Tecno Spark 10', price: 2100, category: 'phones', rating: 4.5, image: '📱' },
+            { id: 4, name: 'iPhone 12', price: 6800, category: 'phones', rating: 4.9, image: '📱', badge: 'new' },
+            
+            // Cases
+            { id: 5, name: 'iPhone 14 Pro Case', price: 150, category: 'cases', rating: 4.7, image: '📲' },
+            { id: 6, name: 'Samsung S23 Case', price: 140, category: 'cases', rating: 4.5, image: '📲' },
+            { id: 7, name: 'Tecno Spark Case', price: 120, category: 'cases', rating: 4.4, image: '📲' },
+            { id: 8, name: 'Rugged Armor Case', price: 180, category: 'cases', rating: 4.8, image: '🛡️', badge: 'new' },
+            
+            // Chargers
+            { id: 9, name: '20W Fast Charger', price: 250, category: 'chargers', rating: 4.6, image: '⚡' },
+            { id: 10, name: '3m USB Cable', price: 80, category: 'chargers', rating: 4.5, image: '🔌' },
+            { id: 11, name: 'Wireless Charger', price: 350, category: 'chargers', rating: 4.7, image: '🔄', badge: 'new' },
+            { id: 12, name: 'Car Charger', price: 200, category: 'chargers', rating: 4.4, image: '🚗' },
+            
+            // Screen Protectors
+            { id: 13, name: 'Tempered Glass', price: 80, category: 'protectors', rating: 4.7, image: '🛡️' },
+            { id: 14, name: 'Privacy Screen', price: 150, category: 'protectors', rating: 4.6, image: '👁️' },
+            { id: 15, name: 'Anti-Glare', price: 120, category: 'protectors', rating: 4.5, image: '☀️' },
+            
+            // Power Banks
+            { id: 16, name: '10000mAh Power Bank', price: 450, category: 'powerbanks', rating: 4.8, image: '🔋' },
+            { id: 17, name: '20000mAh Power Bank', price: 680, category: 'powerbanks', rating: 4.9, image: '🔋', badge: 'sale', oldPrice: 850 },
+            
+            // Audio
+            { id: 18, name: 'Wireless Earbuds', price: 550, category: 'audio', rating: 4.7, image: '🎧', badge: 'new' },
+            { id: 19, name: 'Bluetooth Speaker', price: 450, category: 'audio', rating: 4.6, image: '🔊' },
+            { id: 20, name: 'Wired Headphones', price: 180, category: 'audio', rating: 4.5, image: '🎧' }
+        ];
+
+        // ========== TESTIMONIALS DATABASE ==========
+        const testimonials = [
+            { text: "Bought an iPhone 11 and a case from CK TechFix. Delivered to my office in Woodlands within 2 hours. The phone is perfect and the case is high quality. Highly recommend!", name: "Chileshe B.", location: "Woodlands" },
+            { text: "Screen replacement on my Samsung was done in 25 minutes at my home in Kabulonga. Professional and affordable. Will definitely use again!", name: "Mwila K.", location: "Kabulonga" },
+            { text: "Ordered a power bank and charger for my office in town. Delivered within 1 hour! Great service and products.", name: "Thandiwe M.", location: "CBD" },
+            { text: "My iPhone battery was draining fast. CK TechFix replaced it while I waited at my shop. Now it lasts all day!", name: "Brian C.", location: "Manda Hill" }
+        ];
+
+        // ========== CART STATE ==========
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentFilter = 'all';
+        let currentTestimonial = 0;
+
+        // ========== INITIALIZE ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts();
+            updateCartCount();
+            updateCartDisplay();
+            updateTestimonial();
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    document.getElementById('mainHeader').classList.add('scrolled');
+                } else {
+                    document.getElementById('mainHeader').classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            // Cart icon click
+            document.getElementById('cartIcon').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.add('active');
+            });
+
+            // Close cart
+            document.getElementById('closeCart').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+            });
+
+            // Close cart when clicking outside
+            document.addEventListener('click', function(e) {
+                const cartSidebar = document.getElementById('cartSidebar');
+                const cartIcon = document.getElementById('cartIcon');
+                
+                if (!cartSidebar.contains(e.target) && !cartIcon.contains(e.target) && cartSidebar.classList.contains('active')) {
+                    cartSidebar.classList.remove('active');
+                }
+            });
+
+            // FAQ accordion
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+
+            // Checkout button
+            document.getElementById('checkoutBtn').addEventListener('click', function() {
+                checkoutViaWhatsApp();
+            });
+
+            // Update availability status based on time
+            updateAvailabilityStatus();
+        });
+
+        // ========== PRODUCT DISPLAY ==========
+        function displayProducts() {
+            const grid = document.getElementById('productsGrid');
+            const filteredProducts = currentFilter === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+            
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card fade-in">
+                    ${product.badge ? `<div class="product-badge ${product.badge}">${product.badge === 'new' ? 'NEW' : 'SALE'}</div>` : ''}
+                    <div class="product-image">
+                        <i class="fas ${getProductIcon(product.category)}"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category.toUpperCase()}</div>
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-rating">
+                            ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">ZMW ${product.price}</span>
+                            ${product.oldPrice ? `<span class="old-price">ZMW ${product.oldPrice}</span>` : ''}
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getProductIcon(category) {
+            const icons = {
+                phones: 'fa-mobile-alt',
+                cases: 'fa-phone-alt',
+                chargers: 'fa-plug',
+                protectors: 'fa-shield-alt',
+                powerbanks: 'fa-battery-full',
+                audio: 'fa-headphones'
+            };
+            return icons[category] || 'fa-box';
+        }
+
+        // ========== FILTER PRODUCTS ==========
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && btn.textContent === 'All')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            displayProducts();
+        }
+
+        // ========== CART FUNCTIONS ==========
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            saveCart();
+            updateCartCount();
+            updateCartDisplay();
+            showToast(`${product.name} added to cart!`);
+            
+            // Open cart sidebar
+            document.getElementById('cartSidebar').classList.add('active');
+        }
+
+        function addBundleToCart(bundleName, price) {
+            cart.push({
+                id: Date.now(),
+                name: bundleName,
+                price: price,
+                quantity: 1,
+                category: 'bundle'
+            });
+            
+            saveCart();
+            updateCartCount();
+            updateCartDisplay();
+            showToast(`${bundleName} added to cart!`);
+            document.getElementById('cartSidebar').classList.add('active');
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Browse our store and add items to cart</p>
+                        <button class="btn" onclick="document.getElementById('cartSidebar').classList.remove('active')">
+                            Continue Shopping
+                        </button>
+                    </div>
+                `;
+                document.getElementById('cartTotal').textContent = 'ZMW 0';
+                return;
+            }
+            
+            let total = 0;
+            cartItems.innerHTML = cart.map((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <i class="fas ${item.category === 'bundle' ? 'fa-gift' : getProductIcon(item.category)}"></i>
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">ZMW ${item.price}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('cartTotal').textContent = `ZMW ${total}`;
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            
+            saveCart();
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartCount();
+            updateCartDisplay();
+            showToast('Item removed from cart');
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // ========== CHECKOUT ==========
+        function checkoutViaWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            
+            let message = "Hello CK TechFix! I'd like to order the following items:%0A%0A";
+            
+            cart.forEach(item => {
+                message += `• ${item.name} x${item.quantity} - ZMW ${item.price * item.quantity}%0A`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `%0A*Total: ZMW ${total}*%0A`;
+            message += `%0A📍 Delivery Location:%0A📞 Contact Number:%0A💳 Payment Method:`;
+            
+            window.open(`https://wa.me/260963414738?text=${message}`, '_blank');
+        }
+
+        // ========== BOOK REPAIR ==========
+        function bookRepair(service) {
+            const message = `Hello CK TechFix! I'd like to book a repair service:%0A%0A🔧 Service: ${service}%0A📱 Phone model:%0A📍 Location:%0A🕐 Preferred time:`;
+            window.open(`https://wa.me/260963414738?text=${message}`, '_blank');
+        }
+
+        // ========== TESTIMONIAL SLIDER ==========
+        function updateTestimonial() {
+            const testimonial = testimonials[currentTestimonial];
+            const slider = document.getElementById('testimonialSlider');
+            
+            slider.innerHTML = `
+                <div class="testimonial-card">
+                    <div class="testimonial-text">${testimonial.text}</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4>${testimonial.name}</h4>
+                            <p style="color: var(--gray);">${testimonial.location}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial();
+        }
+
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial();
+        }
+
+        // Auto-rotate testimonials
+        setInterval(nextTestimonial, 5000);
+
+        // ========== TOAST NOTIFICATION ==========
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ========== AVAILABILITY STATUS ==========
+        function updateAvailabilityStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const isWeekend = now.getDay() === 0; // Sunday
+            
+            let isOnline = false;
+            
+            if (isWeekend) {
+                isOnline = hours >= 10 && hours < 16;
+            } else {
+                isOnline = hours >= 8 && hours < 18;
+            }
+            
+            const indicator = document.getElementById('availabilityIndicator');
+            const statusText = document.getElementById('statusText');
+            
+            if (isOnline) {
+                indicator.classList.remove('offline');
+                indicator.classList.add('online');
+                statusText.textContent = 'Online - Fast Delivery';
+            } else {
+                indicator.classList.remove('online');
+                indicator.classList.add('offline');
+                statusText.textContent = 'Offline - Order Anytime';
+            }
+        }
+
+        // Update availability every minute
+        setInterval(updateAvailabilityStatus, 60000);
+    </script>
+</body>
+  </html>
+          

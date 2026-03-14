@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK TechFix - Fastest Phone Repair in Lusaka | 30-Minute Repair</title>
+    <meta name="description" content="Lusaka's fastest phone repair service. We repair your phone in 30 minutes right in front of you. Screen replacement, battery repair, charging issues. Serving all Lusaka areas.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Base Styles with Animation Variables */
+        :root {
+            --primary: #2a5bd7;
+            --primary-dark: #1e429f;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+            overflow-x: hidden;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(42, 91, 215, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(42, 91, 215, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(42, 91, 215, 0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+        
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0, 0); opacity: 0.5; }
+            100% { transform: scale(20, 20); opacity: 0; }
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+            transform: translateY(-3px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #d97706;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0da271;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+        
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+        }
+        
+        .floating-whatsapp .notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--danger);
+            color: white;
+            font-size: 0.7rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        /* Availability Indicator */
+        .availability-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .availability-indicator.online .status-dot {
+            background-color: var(--secondary);
+            animation: pulse 2s infinite;
+        }
+        
+        .availability-indicator.offline .status-dot {
+            background-color: var(--gray);
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        /* Header with Animation */
+        header {
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 5px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled .header-container {
+            padding: 10px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        
+        header.scrolled .logo-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.6rem;
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        header.scrolled .logo-text {
+            font-size: 1.8rem;
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        /* Hero with Animations */
+        .hero {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            padding: 150px 0 100px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(42, 91, 215, 0.1) 0%, rgba(42, 91, 215, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: var(--dark);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 35px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .hero-highlights {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+        
+        .highlight-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .highlight-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .highlight-item:hover .highlight-icon {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-phone {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+            transition: var(--transition);
+        }
+        
+        .hero-phone:hover {
+            transform: perspective(1000px) rotateY(0) rotateX(0);
+        }
+        
+        /* Counter Animation */
+        .counter-section {
+            background: linear-gradient(135deg, var(--dark), #111827);
+            color: white;
+            padding: 70px 0;
+        }
+        
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .counter-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Services with Hover Effects */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-overlay span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+            color: white;
+        }
+
+        .testimonials .section-title,
+        .testimonials .section-subtitle {
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* How It Works with Animation */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .step {
+            flex: 1;
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 25px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        /* Technician Section */
+        .technicians-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .technician-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .technician-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .technician-img {
+            height: 250px;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 5rem;
+        }
+        
+            .technician-info {
+            padding: 25px;
+        }
+        
+        /* Testimonials with Slider Effect */
+        .testimonials-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        .testimonial-card {
+            min-width: 100%;
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin: 0 15px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(42, 91, 215, 0.1);
+            position: absolute;
+            top: -30px;
+            left: -10px;
+        }
+        
+        /* Lusaka Map Section */
+        .lusaka-map {
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+        
+        .map-container {
+            height: 400px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 12px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px rgba(42, 91, 215, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        /* FAQ Section with Accordion */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .faq-item.active {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, padding 0.6s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 25px 25px;
+            max-height: 500px;
+        }
+        
+        .faq-icon {
+            transition: transform 0.6s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #111827);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .contact-info:hover {
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-highlights {
+                justify-content: center;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+            }
+            
+            .steps-container::before {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 20px 20px;
+                gap: 25px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .counter-number {
+                font-size: 2.8rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .availability-indicator {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-highlights {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .floating-whatsapp {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+  <body>
+    <!-- Availability Indicator -->
+    <div class="availability-indicator offline" id="availabilityIndicator">
+        <span class="status-dot"></span>
+        <span id="statusText">Currently Offline</span>
+    </div>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/260963414738?text=Hello%20CK%20TechFix!%20I%20need%20phone%20repair%20in%20Lusaka." class="floating-whatsapp" target="_blank" id="whatsappButton">
+        <i class="fab fa-whatsapp"></i>
+        <div class="notification">5</div>
+    </a>
+    
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">CK</div>
+                <div class="logo-text">CK <span>TechFix</span></div>
+            </a>
+            
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#technicians">Technicians</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text slide-in-left">
+                <h1>Phone Repair in <span id="typed-text"></span>Minutes</h1>
+                <p>Lusaka's fastest phone repair service. We come to you and fix your device right before your eyes. No waiting days, just 30 minutes!</p>
+                
+                <div class="hero-btns">
+                    <a href="https://wa.me/260963414738?text=Hello%20CK%20TechFix!%20I%20need%20phone%20repair%20in%20Lusaka.%20My%20details:%0A%0A📱%20Phone%20model:%0A🔧%20Problem:%0A📍%20Location:" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Now
+                    </a>
+                    <a href="#services" class="btn btn-accent">View Services</a>
+                </div>
+                
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h4>30-Minute Repair</h4>
+                            <p>Fastest in Lusaka</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h4>6-Month Warranty</h4>
+                            <p>Quality guaranteed</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div>
+                            <h4>Expert Technicians</h4>
+                            <p>Certified professionals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image slide-in-right">
+                <div class="map-container" style="height: 400px; border-radius: 20px; overflow: hidden;">
+                    <div class="hero-phone" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <i class="fas fa-mobile-alt" style="font-size: 6rem; margin-bottom: 20px;"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 10px;">CK TechFix</h3>
+                        <p style="text-align: center;">Phone Repair in Lusaka<br>30-Minute Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="container">
+            <div class="counters">
+                <div class="counter-item fade-in">
+                    <div class="counter-number" data-count="850">0</div>
+                    <p>Phones Repaired</p>
+                </div>
+                <div class="counter-item fade-in">
+                    <div class="counter-number" data-count="30">0</div>
+                    <p>Minute Average Repair</p>
+                </div>
+                <div class="counter-item fade-in">
+                    <div class="counter-number" data-count="98">0</div>
+                    <p>Customer Satisfaction</p>
+                </div>
+                <div class="counter-item fade-in">
+                    <div class="counter-number" data-count="6">0</div>
+                    <p>Month Warranty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Repair Services</h2>
+                <p>We fix Samsung, Huawei Techno, Infinixy and Itel with high-quality parts and 6-month warranty. All repairs done right in front of you.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Screen Replacement</h3>
+                    <p>Cracked or broken screens replaced with high-quality displays. iPhone, Samsung, Huawei, all models.</p>
+                    <div style="margin-top: 20px; color: var(--primary); font-weight: 600;">
+                        From ZMW 350
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>Battery Replacement</h3>
+                    <p>Fast-draining battery? We install new, long-lasting batteries with 6-month warranty.</p>
+                    <div style="margin-top: 20px; color: var(--primary); font-weight: 600;">
+                        From ZMW 250
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Charging Issues</h3>
+                    <p>Phone not charging? We fix charging ports, replace cables, and resolve power problems.</p>
+                    <div style="margin-top: 20px; color: var(--primary); font-weight: 600;">
+                        From ZMW 150
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Delivery Service</h3>
+                    <p>We deliver phones & accessories across Lusaka. Screen protectors, cases, chargers available.</p>
+                    <div style="margin-top: 20px; color: var(--primary); font-weight: 600;">
+                        Delivery: ZMW 30
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://wa.me/260963414738?text=Hello%20CK%20TechFix!%20I%20need%20a%20quote%20for%20phone%20repair." class="btn btn-secondary" style="font-size: 1.1rem; padding: 16px 40px;" target="_blank">
+                    <i class="fas fa-calculator"></i> Get Instant Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Before & After Gallery</h2>
+        <p class="section-subtitle">See the quality of our work for yourself</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="screen replacement.jpg" alt="Screen Repair">
+                <div class="gallery-overlay">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Cracked Screen → Fixed</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="b177f758f9aef0c3f145dcddefe64de0.jpg" alt="Battery Replacement">
+                <div class="gallery-overlay">
+                    <i class="fas fa-battery-full"></i>
+                    <span>Dead Battery → New</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="backglass.jpg" alt="Battery Replacement">
+                <div class="gallery-overlay">
+                    <i class="fas fa-battery-full"></i>
+                    <span>iphone Backglass → New</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="water damage.jpg" alt="Water Damage">
+                <div class="gallery-overlay">
+                    <i class="fas fa-tint"></i>
+                    <span>Water Damaged → Working</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="charging port.jpg" alt="Charging Port">
+                <div class="gallery-overlay">
+                    <i class="fas fa-plug"></i>
+                    <span>Dirty Port → Clean</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" style="background-color: #f8fafc;">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Simple 4-step process to get your phone fixed today. No stress, no waiting days for repair.</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Message Us</h3>
+                    <p>WhatsApp us your phone model, problem, and location in Lusaka. We reply within 15 minutes.</p>
+                </div>
+                
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Get Quote & Schedule</h3>
+                    <p>We provide instant quote and schedule a time that works for you - at your home or office.</p>
+                </div>
+                
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>On-site Repair</h3>
+                    <p>Our certified technician arrives with all tools and parts. Watch as we fix your phone in 30 minutes.</p>
+                </div>
+                
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Test & Pay</h3>
+                    <p>Test your fully repaired phone. Pay only after you're 100% satisfied with our work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technician Section -->
+    <section id="technicians">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Certified Technicians</h2>
+                <p>Meet our team of expert phone repair technicians with years of experience and certifications.</p>
+            </div>
+            
+            <div class="technicians-grid">
+                <div class="technician-card fade-in">
+                    <div class="technician-img">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="technician-info">
+                        <h3>Chola Kachamba.</h3>
+                        <p style="color: var(--primary); margin-bottom: 10px;">Lead Technician</p>
+                        <p>3+ years experience in phone repair. Specializes in iPhone and Samsung devices.</p>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">iPhone Certified</span>
+                            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Samsung</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="technician-card fade-in">
+                    <div class="technician-img">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="technician-info">
+                        <h3>David N.</h3>
+                        <p style="color: var(--primary); margin-bottom: 10px;">Repair Specialist</p>
+                        <p>Expert in water damage repair and charging port issues. 3+ years experience.</p>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Water Damage</span>
+                            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Board Repair</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="technician-card fade-in">
+                    <div class="technician-img">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="technician-info">
+                        <h3>Bwalya M.</h3>
+                        <p style="color: var(--primary); margin-bottom: 10px;">Technical Support</p>
+                        <p>Handles customer service, scheduling, and ensures smooth repair process.</p>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Customer Service</span>
+                            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Scheduling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" style="background-color: #f0f7ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Reviews</h2>
+                <p>See what our customers in Lusaka say about our fast, reliable phone repair service.</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "My iPhone screen was completely shattered. CK TechFix came to my office in Woodlands and fixed it in 25 minutes while I worked. Amazing service!"
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 50px; height: 50px; background-color: #e5e7eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user" style="color: var(--gray);"></i>
+                            </div>
+                            <div>
+                                <h4>Sarah M.</h4>
+                                <p style="color: var(--gray);">Woodlands, Lusaka</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px;">
+                    <button class="btn" onclick="prevTestimonial()" style="padding: 10px 20px;"><i class="fas fa-chevron-left"></i></button>
+                    <button class="btn" onclick="nextTestimonial()" style="padding: 10px 20px;"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lusaka Service Area -->
+    <section id="service-area">
+        <div class="container">
+            <div class="section-title">
+                <h2>We Serve All Lusaka</h2>
+                <p>Our mobile repair service covers all major areas in Lusaka. We come to you wherever you are.</p>
+            </div>
+            
+            <div class="lusaka-map fade-in">
+                <h3 style="margin-bottom: 20px;">Service Areas in Lusaka:</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Woodlands</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Kabulonga</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Roma</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Longacres</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Manda Hill</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Northmead</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Kalingalinga</span>
+                    <span style="background: #e0e7ff; color: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: 600;">Chilenje</span>
+                </div>
+                
+                <div class="map-container">
+                    <div style="text-align: center; color: var(--primary);">
+                        <i class="fas fa-map-marked-alt" style="font-size: 5rem; margin-bottom: 20px;"></i>
+                        <h3>Lusaka Service Map</h3>
+                        <p>We cover all these areas and more</p>
+                    </div>
+                    
+                    <!-- Map points -->
+                    <div class="map-point" style="top: 30%; left: 25%;"></div>
+                    <div class="map-point" style="top: 40%; left: 40%;"></div>
+                    <div class="map-point" style="top: 50%; left: 60%;"></div>
+                    <div class="map-point" style="top: 35%; left: 70%;"></div>
+                    <div class="map-point" style="top: 60%; left: 35%;"></div>
+                    <div class="map-point" style="top: 65%; left: 55%;"></div>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <p><strong>Delivery available to all Lusaka areas for only ZMW 30</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background-color: #f8fafc;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Got questions? We've got answers about our phone repair service in Lusaka.</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Is my data safe during repair?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We never access your personal data during repair. Our technicians are trained to focus only on hardware issues. For screen repairs, your data remains completely safe.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Do you use original parts?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We use high-quality OEM (Original Equipment Manufacturer) equivalent parts that match original specifications. All parts come with 6-month warranty.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>What if my phone has water damage?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We specialize in water damage repair! The sooner you bring it, the better. We'll diagnose and give you an honest assessment before any repair.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>How long does battery replacement take?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Battery replacement takes 20-30 minutes for most phone models. We replace it right in front of you and ensure it's working perfectly before you pay.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Do you repair tablets as well?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We repair iPad and Android tablets for screen replacement, battery issues, and charging problems. WhatsApp us your tablet model for a quote.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.8rem; margin-bottom: 20px;">Ready to Fix Your Phone?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">Message us now on WhatsApp for same-day repair in Lusaka. We'll reply within 15 minutes during business hours (08:00-18:00).</p>
+            
+            <a href="https://wa.me/260963414738?text=Hello%20CK%20TechFix!%20I%20need%20phone%20repair%20in%20Lusaka.%20Please%20send%20a%20technician%20today." class="btn" style="background: white; color: var(--primary); font-size: 1.2rem; padding: 18px 45px;" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp for Same-Day Repair
+            </a>
+            
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <div>
+                    <i class="fas fa-clock" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4>08:00 - 18:00</h4>
+                    <p>Working Hours</p>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4>Lusaka Only</h4>
+                    <p>Service Area</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4>096 341 4738</h4>
+                    <p>Call/WhatsApp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>CK TechFix</h3>
+                    <p>Lusaka's fastest phone repair service. We repair your phone in 30 minutes right in front of you. Serving all Lusaka areas.</p>
+                    
+                    <div style="margin-top: 25px; display: flex; gap: 15px;">
+                        <a href="https://www.facebook.com/profile.php?id=61583590026258" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/cktechfix?igsh=c3djbHRmaHNweWhs" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@cktechfix?_r=1&_t=ZS-93hMoPJBRMS" style="color: white; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services & Prices</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#technicians">Our Technicians</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <p><strong>WhatsApp/Call</strong></p>
+                            <p>+260 96 341 4738</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <i class="far fa-clock"></i>
+                        <div>
+                            <p><strong>Working Hours</strong></p>
+                            <p>Monday - Saturday: 08:00 – 18:00<br>Sunday: off</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p><strong>Service Area</strong></p>
+                            <p>Lusaka, Zambia (All Areas)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Our Guarantee</h3>
+                    <ul class="footer-links">
+                        <li>✓ 30-Minute Repair Promise</li>
+                        <li>✓ 6-Month Warranty</li>
+                        <li>✓ Certified Technicians</li>
+                        <li>✓ Data Protection Guarantee</li>
+                        <li>✓ No Fix, No Fee</li>
+                        <li>✓ 100% Satisfaction</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 CK TechFix - Phone Repair Service in Lusaka. All rights reserved. | WhatsApp: +260 96 341 4738</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Fast • Reliable • Affordable Phone Repair in Lusaka</p>
+            </div>
+        </div>
+  </footer>
+  <script>
+        // DOM Elements
+        const header = document.getElementById('mainHeader');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const availabilityIndicator = document.getElementById('availabilityIndicator');
+        const statusText = document.getElementById('statusText');
+        const whatsappButton = document.getElementById('whatsappButton');
+        
+        // Scroll animations for elements
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const slideLeftElements = document.querySelectorAll('.slide-in-left');
+        const slideRightElements = document.querySelectorAll('.slide-in-right');
+        
+        // Typing animation for hero text
+        function typeWriter() {
+            const text = "30";
+            const typedTextElement = document.getElementById('typed-text');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    typedTextElement.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 150);
+                } else {
+                    // Add blinking cursor
+                    typedTextElement.innerHTML += '<span class="blinking-cursor">|</span>';
+                }
+            }
+            
+            // Start typing after a delay
+            setTimeout(type, 500);
+        }
+        
+        // Animated counter
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+        
+        // Check scroll position for animations
+        function checkScroll() {
+            // Header scroll effect
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Element animations on scroll
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < triggerBottom) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            slideLeftElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < triggerBottom) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            slideRightElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < triggerBottom) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // Animate counters when in view
+            const counterSection = document.querySelector('.counter-section');
+            if (counterSection) {
+                const counterTop = counterSection.getBoundingClientRect().top;
+                if (counterTop < triggerBottom && !counterSection.classList.contains('animated')) {
+                    counterSection.classList.add('animated');
+                    animateCounters();
+                }
+            }
+        }
+        
+        // Simulate online/offline status based on time
+        function updateAvailabilityStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const isWeekend = now.getDay() === 0; // Sunday
+            
+            // Working hours: 8:00-18:00 weekdays, 10:00-16:00 Sundays
+            let isOnline = false;
+            
+            if (isWeekend) {
+                isOnline = hours >= 10 && hours < 16;
+            } else {
+                isOnline = hours >= 8 && hours < 18;
+            }
+            
+            if (isOnline) {
+                availabilityIndicator.classList.remove('offline');
+                availabilityIndicator.classList.add('online');
+                statusText.textContent = 'Currently Online';
+                
+                // Update WhatsApp button notification
+                const notification = whatsappButton.querySelector('.notification');
+                notification.textContent = 'Live';
+                notification.style.backgroundColor = '#10b981';
+            } else {
+                availabilityIndicator.classList.remove('online');
+                availabilityIndicator.classList.add('offline');
+                statusText.textContent = 'Currently Offline';
+                
+                // Update WhatsApp button notification
+                const notification = whatsappButton.querySelector('.notification');
+                notification.textContent = '5';
+                notification.style.backgroundColor = '#ef4444';
+            }
+            
+            // Update every minute
+            setTimeout(updateAvailabilityStatus, 60000);
+        }
+        
+        // FAQ Accordion
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        }
+        
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        const testimonials = [
+            {
+                text: "My iPhone screen was completely shattered. CK TechFix came to my office in Woodlands and fixed it in 25 minutes while I worked. Amazing service!",
+                name: "Sarah M.",
+                location: "Woodlands, Lusaka"
+            },
+            {
+                text: "Battery was dying in 2 hours. CK TechFix replaced it right at my home in Kabulonga. Now it lasts all day! Professional and affordable.",
+                name: "James T.",
+                location: "Kabulonga, Lusaka"
+            },
+            {
+                text: "Charging port stopped working. They fixed it in 20 minutes at my shop in town. Will definitely use again and recommend to friends!",
+                name: "Linda K.",
+                location: "CBD, Lusaka"
+            }
+        ];
+        
+        function updateTestimonial() {
+            const slider = document.getElementById('testimonialSlider');
+            const testimonial = testimonials[currentTestimonial];
+            
+            slider.innerHTML = `
+                <div class="testimonial-card">
+                    <div class="testimonial-text">${testimonial.text}</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background-color: #e5e7eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user" style="color: var(--gray);"></i>
+                        </div>
+                        <div>
+                            <h4>${testimonial.name}</h4>
+                            <p style="color: var(--gray);">${testimonial.location}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial();
+        }
+        
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial();
+        }
+        
+        // Auto-rotate testimonials
+        function autoRotateTestimonials() {
+            setInterval(nextTestimonial, 5000);
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typing animation
+            typeWriter();
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Update availability status
+            updateAvailabilityStatus();
+            
+            // Initialize FAQ accordion
+            initFAQ();
+            
+            // Initialize testimonial slider
+            updateTestimonial();
+            autoRotateTestimonials();
+            
+            // Initial scroll check for animations
+            checkScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', checkScroll);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === "#") return;
+                    
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add click effect to buttons
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.7);
+                        transform: scale(0);
+                        animation: ripple-animation 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        top: ${y}px;
+                        left: ${x}px;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Add CSS for ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple-animation {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+                
+                .blinking-cursor {
+                    animation: blink 1s infinite;
+                }
+                
+                @keyframes blink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Simulate live chat notification
+            setInterval(() => {
+                const notification = whatsappButton.querySelector('.notification');
+                const current = parseInt(notification.textContent);
+                
+                if (!isNaN(current) && current > 0) {
+                    // Randomly add new notifications during business hours
+                    const now = new Date();
+                    const hours = now.getHours();
+                    
+                    if (hours >= 8 && hours < 18 && Math.random() > 0.7) {
+                        notification.textContent = current + 1;
+                        notification.style.animation = 'none';
+                        notification.offsetHeight; // Trigger reflow
+                        notification.style.animation = 'pulse 2s infinite';
+                    }
+                }
+            }, 10000);
+        });
+    </script>
+</body>
+</html>
+ 
