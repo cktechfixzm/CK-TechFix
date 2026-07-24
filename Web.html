@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CK TechFix – Complete App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+    body {
+      background: #f0f4f9;
+      color: #0D1529;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul { list-style: none; }
+
+    :root {
+      --primary: #06387E;
+      --secondary: #046EC0;
+      --accent: #3DD4FF;
+      --neutral-dark: #0D1529;
+      --neutral-light: #FFFFFF;
+      --shadow: 0 10px 30px rgba(6, 56, 126, 0.12);
+      --radius: 16px;
+      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #e8ecf1; }
+    ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--neutral-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-phone {
+      font-size: 4rem;
+      color: var(--secondary);
+      animation: bouncePhone 1.2s infinite alternate ease-in-out;
+    }
+    .loader-text {
+      margin-top: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 3px;
+      font-size: 1.2rem;
+    }
+    .loader-bar {
+      margin-top: 1.2rem;
+      width: 200px;
+      height: 5px;
+      background: #e0e7f0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .loader-bar-inner {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      border-radius: 12px;
+      animation: loadProgress 2s ease-in-out forwards;
+    }
+    @keyframes loadProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    @keyframes bouncePhone {
+      0% { transform: translateY(-10px) scale(1); }
+      100% { transform: translateY(20px) scale(1.05); }
+    }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-buttons {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 999;
+    }
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .float-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+    .float-whatsapp { background: #25D366; }
+    .float-book { background: var(--secondary); }
+    .float-btn i { font-size: 1.3rem; }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: var(--neutral-light);
+      padding: 0.7rem 2rem;
+      box-shadow: 0 2px 12px rgba(6,56,126,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.92);
+    }
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    .logo img {
+      height: 38px;
+      width: 38px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .logo span { color: var(--secondary); }
+
+    .nav-desktop {
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 500;
+      color: var(--neutral-dark);
+      align-items: center;
+    }
+    .nav-desktop a {
+      transition: color 0.2s, border-bottom 0.2s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .nav-desktop a:hover { color: var(--secondary); border-bottom-color: var(--accent); }
+    .nav-desktop .active { color: var(--secondary); border-bottom-color: var(--secondary); }
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.3rem;
+      color: var(--primary);
+      cursor: pointer;
+      transition: 0.2s;
+      margin-left: 8px;
+    }
+    .cart-icon:hover { color: var(--secondary); }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #e74c3c;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      transition: 0.2s;
+      position: relative;
+    }
+    .hamburger:hover { color: var(--secondary); }
+    .hamburger-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: #e74c3c;
+      color: white;
+      font-size: 0.55rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(13, 21, 41, 0.96);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 5rem 2rem 2rem;
+      gap: 1rem;
+      z-index: 200;
+      transform: translateX(100%);
+      transition: transform 0.35s ease-in-out;
+    }
+    .mobile-menu.open { transform: translateX(0%); }
+    .mobile-menu a {
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: 0.2s;
+      padding: 8px 16px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 300px;
+      cursor: pointer;
+    }
+    .mobile-menu a i { width: 2rem; color: var(--accent); }
+    .mobile-menu a:hover { background: rgba(61, 212, 255, 0.12); transform: translateX(6px); }
+    .mobile-menu .cart-link {
+      border: 1px solid rgba(61, 212, 255, 0.2);
+      background: rgba(61, 212, 255, 0.06);
+    }
+    .mobile-menu .cart-link:hover {
+      background: rgba(61, 212, 255, 0.15);
+      border-color: var(--accent);
+    }
+    .mobile-menu .cart-link .cart-badge-mobile {
+      background: #e74c3c;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-left: auto;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-size: 2.4rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ===== PAGE CONTAINER ===== */
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+    }
+
+    /* ===== PAGE SECTIONS ===== */
+    .page-section {
+      display: none;
+      animation: fadeSlide 0.4s ease;
+    }
+    .page-section.active {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== HOME PAGE ===== */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, #0a2a5a 100%);
+      border-radius: var(--radius);
+      padding: 3.5rem 3rem;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(61,212,255,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-banner h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-banner h1 i { color: var(--accent); }
+    .hero-banner p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0.8rem auto 1.8rem;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--neutral-dark);
+      padding: 14px 36px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      box-shadow: 0 8px 20px rgba(61,212,255,0.3);
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(61,212,255,0.4);
+      background: #5adcff;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); }
+    .stat-card .number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .stat-card .label {
+      color: #6a7a8a;
+      font-size: 0.9rem;
+    }
+    .stat-card i {
+      font-size: 1.8rem;
+      color: var(--secondary);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .service-card {
+      background: white;
+      padding: 1.8rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: 0.3s;
+      border-bottom: 4px solid var(--accent);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(6,56,126,0.1); }
+    .service-card i {
+      font-size: 2.4rem;
+      color: var(--secondary);
+      margin-bottom: 0.8rem;
+    }
+    .service-card h3 { color: var(--primary); font-size: 1.1rem; }
+    .service-card p { color: #6a7a8a; font-size: 0.9rem; margin-top: 0.3rem; }
+
+    /* ===== STORE ===== */
+    .category-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+      justify-content: center;
+    }
+    .category-bar button {
+      background: white;
+      border: 2px solid #e0e8f0;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--neutral-dark);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .category-bar button:hover,
+    .category-bar button.active {
+      background: var(--secondary);
+      color: white;
+      border-color: var(--secondary);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(6,56,126,0.1); }
+    .product-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+    .product-card .info {
+      padding: 1rem 1rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card .info h4 {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    .product-card .info .desc {
+      color: #6a7a8a;
+      font-size: 0.8rem;
+      flex: 1;
+      margin-bottom: 0.4rem;
+    }
+    .product-card .info .price {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+    .btn-add {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-add:hover { background: #057be0; transform: scale(1.02); }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      font-style: italic;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+      top: 0.2rem;
+      left: 0.8rem;
+    }
+    .testimonial-card p { margin: 0.8rem 0 0.3rem; font-size: 0.95rem; }
+    .testimonial-card h4 { color: var(--primary); font-style: normal; font-weight: 600; font-size: 0.95rem; }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .contact-info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .contact-info-card h3 { color: var(--primary); margin-bottom: 1.2rem; }
+    .contact-info-card h3 i { color: var(--secondary); margin-right: 10px; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .contact-item i {
+      width: 36px;
+      height: 36px;
+      background: #e4edfa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+    }
+    .contact-form-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .contact-form-card h3 { color: var(--primary); margin-bottom: 1.2rem; }
+    .contact-form-card h3 i { color: var(--secondary); margin-right: 10px; }
+    .contact-form-card .form-group {
+      margin-bottom: 1rem;
+    }
+    .contact-form-card .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+    .contact-form-card .form-group input,
+    .contact-form-card .form-group textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 2px solid #e8edf5;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+    .contact-form-card .form-group input:focus,
+    .contact-form-card .form-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+    .btn-submit {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: #057be0; }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 300;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .cart-overlay.open { opacity: 1; visibility: visible; }
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      max-width: 90vw;
+      height: 100%;
+      background: white;
+      z-index: 301;
+      padding: 1.8rem 1.5rem;
+      transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid #f0f4f8;
+    }
+    .cart-header h2 { color: var(--primary); font-size: 1.3rem; }
+    .cart-header h2 i { color: var(--secondary); margin-right: 8px; }
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #888;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .close-cart:hover { color: #e74c3c; }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+    .cart-item {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f0f4f8;
+      align-items: center;
+    }
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .cart-item-details { flex: 1; }
+    .cart-item-details h4 { color: var(--primary); font-size: 0.85rem; }
+    .cart-item-details .price { color: var(--secondary); font-weight: 600; font-size: 0.85rem; }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cart-item-qty button {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: 0.2s;
+    }
+    .cart-item-qty button:hover { background: var(--secondary); color: white; border-color: var(--secondary); }
+    .cart-item-qty span { font-weight: 600; min-width: 18px; text-align: center; font-size: 0.9rem; }
+    .cart-item-remove { color: #e74c3c; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+    .cart-item-remove:hover { transform: scale(1.2); }
+    .cart-footer {
+      border-top: 2px solid #f0f4f8;
+      padding-top: 1rem;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+    .cart-total span { color: var(--secondary); }
+    .btn-checkout {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+    }
+    .btn-checkout:hover { background: #057be0; }
+    .empty-cart { text-align: center; color: #888; padding: 2rem 0; }
+    .empty-cart i { font-size: 3rem; color: #ddd; margin-bottom: 0.8rem; display: block; }
+
+    /* ===== CHECKOUT MODAL ===== */
+    .checkout-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .checkout-modal.open { opacity: 1; visibility: visible; }
+    .checkout-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 460px;
+      width: 90%;
+    max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.9);
+      transition: 0.3s;
+    }
+    .checkout-modal.open .checkout-content { transform: scale(1); }
+    .checkout-content h2 { color: var(--primary); margin-bottom: 1.2rem; font-size: 1.4rem; }
+    .checkout-content h2 i { color: var(--secondary); margin-right: 8px; }
+    .checkout-content .form-group { margin-bottom: 1rem; }
+    .checkout-content .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      font-size: 0.85rem;
+    }
+    .checkout-content .form-group input,
+    .checkout-content .form-group textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 2px solid #e8edf5;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+    .checkout-content .form-group input:focus,
+    .checkout-content .form-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+    .checkout-content .order-summary {
+      background: #f8faff;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      margin: 0.8rem 0;
+    }
+    .checkout-content .order-summary p {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem 0;
+      font-size: 0.9rem;
+    }
+    .btn-place-order {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .btn-place-order:hover { background: #219a52; }
+    .btn-close-checkout {
+      background: #eee;
+      border: none;
+      padding: 0.7rem;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.4rem;
+      transition: 0.2s;
+    }
+    .btn-close-checkout:hover { background: #ddd; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background: #27ae60;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      z-index: 500;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: 0.4s;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast i { margin-right: 10px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--neutral-dark);
+      color: white;
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 2rem;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 920px) {
+      .nav-desktop { display: none; }
+      .hamburger { display: block; }
+      .hero-banner h1 { font-size: 2rem; }
+      .hero-banner { padding: 2.5rem 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .page-container { padding: 1rem 1rem 2rem; }
+    }
+    @media (max-width: 700px) {
+      .header { padding: 0.5rem 1rem; }
+      .floating-buttons { bottom: 16px; right: 16px; gap: 10px; }
+      .float-btn { padding: 10px 14px; font-size: 0.85rem; }
+      .float-btn span { display: none; }
+      .float-btn i { font-size: 1.4rem; }
+      .hero-banner h1 { font-size: 1.6rem; }
+      .hero-banner p { font-size: 0.95rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .cart-sidebar { width: 100%; max-width: 100%; right: -100%; }
+      .logo img { height: 32px; width: 32px; }
+      .logo { font-size: 1.2rem; }
+      .mobile-menu a { font-size: 1.2rem; padding: 6px 12px; }
+      .checkout-content { padding: 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title i { color: var(--secondary); }
+    .section-title span { color: var(--secondary); }
+  </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-phone"><i class="fas fa-mobile-alt"></i></div>
+    <div class="loader-text">CK TechFix</div>
+    <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+  </div>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-buttons">
+    <a href="https://wa.me/260963414738" class="float-btn float-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp Us</span></a>
+    <a href="#" class="float-btn float-book" onclick="navigateTo('book')"><i class="fas fa-calendar-check"></i><span>Book Repair</span></a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo" onclick="navigateTo('home')">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2306387E'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%233DD4FF' font-family='Arial' font-weight='bold'%3ECK%3C/text%3E%3C/svg%3E" alt="CK TechFix Logo" />
+        CK<span>TechFix</span>
+      </div>
+      <nav class="nav-desktop">
+        <a class="active" data-page="home" onclick="navigateTo('home')">Home</a>
+        <a data-page="book" onclick="navigateTo('book')">Book Repair</a>
+        <a data-page="services" onclick="navigateTo('services')">Services</a>
+        <a data-page="store" onclick="navigateTo('store')">Store</a>
+        <a data-page="about" onclick="navigateTo('about')">About</a>
+        <a data-page="contact" onclick="navigateTo('contact')">Contact</a>
+        <div class="cart-icon" id="cartIcon" onclick="openCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </div>
+      </nav>
+      <button class="hamburger" id="hamburgerBtn">
+        <i class="fas fa-bars"></i>
+        <span class="hamburger-badge" id="hamburgerBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+    <a data-page="home" onclick="navigateTo('home'); closeMenu();"><i class="fas fa-home"></i> Home</a>
+    <a data-page="book" onclick="navigateTo('book'); closeMenu();"><i class="fas fa-calendar-plus"></i> Book Repair</a>
+    <a data-page="services" onclick="navigateTo('services'); closeMenu();"><i class="fas fa-wrench"></i> Services</a>
+    <a data-page="store" onclick="navigateTo('store'); closeMenu();"><i class="fas fa-shopping-bag"></i> Accessories Store</a>
+    <a data-page="about" onclick="navigateTo('about'); closeMenu();"><i class="fas fa-user-cog"></i> About Us</a>
+    <a data-page="contact" onclick="navigateTo('contact'); closeMenu();"><i class="fas fa-phone-alt"></i> Contact Us</a>
+    <a class="cart-link" onclick="closeMenu(); setTimeout(openCart, 300);">
+      <i class="fas fa-shopping-cart"></i> View Cart
+      <span class="cart-badge-mobile" id="mobileCartBadge">0</span>
+    </a>
+  </div>
+
+  <!-- PAGE CONTAINER -->
+  <div class="page-container">
+
+    <!-- ===== HOME PAGE ===== -->
+    <div class="page-section active" id="page-home">
+      <div class="hero-banner">
+        <h1><i class="fas fa-phone-alt"></i> We Come to You – <br>Professional Mobile Phone Repairs at Your Doorstep.</h1>
+        <p>Fast, reliable, and certified technicians in Lusaka. We fix iPhones, Samsung, and all major brands at your home or office.</p>
+        <button class="btn-primary" onclick="navigateTo('book')"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><i class="fas fa-smile"></i><div class="number">500+</div><div class="label">Happy Customers</div></div>
+        <div class="stat-card"><i class="fas fa-clock"></i><div class="number">30min</div><div class="label">Avg. Repair Time</div></div>
+        <div class="stat-card"><i class="fas fa-star"></i><div class="number">4.9</div><div class="label">Customer Rating</div></div>
+        <div class="stat-card"><i class="fas fa-map-pin"></i><div class="number">100%</div><div class="label">Doorstep Service</div></div>
+      </div>
+
+      <h2 class="section-title">Our <span>Services</span></h2>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-mobile-alt"></i><h3>Screen Repair</h3><p>Cracked screen? We replace it on-site.</p></div>
+        <div class="service-card"><i class="fas fa-battery-three-quarters"></i><h3>Battery Replacement</h3><p>Get your battery life back.</p></div>
+        <div class="service-card"><i class="fas fa-water"></i><h3>Water Damage</h3><p>Professional cleaning & repair.</p></div>
+        <div class="service-card"><i class="fas fa-microchip"></i><h3>Motherboard Repair</h3><p>Advanced chip-level fixing.</p></div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:2.5rem;">What Our <span>Customers Say</span></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card"><p>“CK TechFix came to my office and fixed my iPhone screen in 30 minutes. Amazing service!”</p><h4>— Mutale, Lusaka</h4></div>
+        <div class="testimonial-card"><p>“Very professional, they diagnosed my Samsung battery issue quickly and replaced it on the spot.”</p><h4>— Chanda, Kabulonga</h4></div>
+        <div class="testimonial-card"><p>“Highly recommend! Doorstep repair saved me time and stress. Thank you CK TechFix.”</p><h4>— Thandi, Rhodes Park</h4></div>
+      </div>
+    </div>
+
+    <!-- ===== BOOK REPAIR PAGE ===== -->
+    <div class="page-section" id="page-book">
+      <h2 class="section-title"><i class="fas fa-calendar-check"></i> Book a <span>Repair</span></h2>
+      <p style="color:#6a7a8a; margin-bottom:1.5rem;">We come to your doorstep in Lusaka. Quick, reliable, and professional.</p>
+      <div style="background:white; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow); max-width:700px;">
+        <form id="bookingForm">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group"><label>Full Name</label><input type="text" id="bookName" placeholder="e.g. Mutale Banda" required /></div>
+            <div class="form-group"><label>Phone</label><input type="tel" id="bookPhone" placeholder="+260 963 414 738" required /></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group"><label>Email</label><input type="email" id="bookEmail" placeholder="you@example.com" /></div>
+            <div class="form-group"><label>Location</label><input type="text" id="bookLocation" placeholder="e.g. Kabulonga" required /></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group"><label>Phone Model</label><input type="text" id="bookModel" placeholder="iPhone 14, Samsung S23" required /></div>
+            <div class="form-group"><label>Issue Type</label>
+              <select id="bookIssue" required>
+                <option value="">Select...</option>
+                <option>Screen Crack / LCD</option><option>Battery Replacement</option>
+                <option>Water Damage</option><option>Charging Port</option>
+                <option>Speaker / Mic</option><option>Motherboard / Logic Board</option>
+                <option>Software / OS</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Preferred Date & Time</label><input type="datetime-local" id="bookDateTime" required /></div>
+          <div class="form-group"><label>Additional Info</label><textarea id="bookInfo" rows="2" placeholder="Describe the issue..."></textarea></div>
+          <button type="submit" class="btn-submit"><i class="fab fa-whatsapp"></i> Send Booking via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== SERVICES PAGE ===== -->
+    <div class="page-section" id="page-services">
+      <h2 class="section-title"><i class="fas fa-wrench"></i> Our <span>Services</span></h2>
+      <p style="color:#6a7a8a; margin-bottom:1.5rem;">Professional mobile repairs done at your doorstep in Lusaka. Fast, reliable, and backed by warranty.</p>
+      <div class="services-grid" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="service-card"><i class="fas fa-mobile-alt"></i><h3>Screen Repair</h3><p>Cracked screen? We replace LCD/OLED displays.</p><span style="display:inline-block;background:#eef6fe;color:var(--secondary);padding:0.2rem 0.8rem;border-radius:40px;font-size:0.8rem;font-weight:700;margin-top:0.5rem;">From ZMW 350</span></div>
+        <div class="service-card"><i class="fas fa-battery-three-quarters"></i><h3>Battery Replacement</h3><p>Genuine or high-capacity batteries for lasting performance.</p><span style="display:inline-block;background:#eef6fe;color:var(--secondary);padding:0.2rem 0.8rem;border-radius:40px;font-size:0.8rem;font-weight:700;margin-top:0.5rem;">From ZMW 250</span></div>
+        <div class="service-card"><i class="fas fa-water"></i><h3>Water Damage Recovery</h3><p>Ultrasonic cleaning and micro-soldering to revive devices.</p><span style="display:inline-block;background:#eef6fe;color:var(--secondary);padding:0.2rem 0.8rem;border-radius:40px;font-size:0.8rem;font-weight:700;margin-top:0.5rem;">From ZMW 450</span></div>
+        <div class="service-card"><i class="fas fa-microchip"></i><h3>Motherboard Repair</h3><p>Advanced chip-level repairs for charging, network, audio.</p><span style="display:inline-block;background:#eef6fe;color:var(--secondary);padding:0.2rem 0.8rem;border-radius:40px;font-size:0.8rem;font-weight:700;margin-top:0.5rem;">From ZMW 600</span></div>
+        <div class="service-card"><i class="fas fa-charging-station"></i><h3>Charging Port Fix</h3><p>Loose or damaged charging port replacement.</p><span style="display:inline-block;background:#eef6fe;color:var(--secondary);padding:0.2rem 0.8rem;border-radius:40px;font-size:0.8rem;font-weight:700;margin-top:0.5rem;">From ZMW 200</span></div>
+        <div class="service-card"><i class="fas fa-camera"></i><h3>Camera & Lens Repair</h3><p>Fix or replace front/back cameras and lens glass.</p><span style="display:inline-block;background:#eef6fe;color:var(--secondary);padding:0.2rem 0.8rem;border-radius:40px;font-size:0.8rem;font-weight:700;margin-top:0.5rem;">From ZMW 300</span></div>
+      </div>
+    </div>
+
+    <!-- ===== STORE PAGE ===== -->
+    <div class="page-section" id="page-store">
+      <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Accessories <span>Store</span></h2>
+      <p style="color:#6a7a8a; margin-bottom:1rem;">Premium phone accessories – cases, chargers, screen protectors & more.</p>
+      <div class="category-bar" id="categoryBar">
+        <button class="active" data-category="all">All</button>
+        <button data-category="cases">Cases</button>
+        <button data-category="chargers">Chargers</button>
+        <button data-category="protectors">Screen Protectors</button>
+        <button data-category="audio">Audio</button>
+        <button data-category="power">Power Banks</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+
+    <!-- ===== ABOUT PAGE ===== -->
+    <div class="page-section" id="page-about">
+      <h2 class="section-title"><i class="fas fa-users"></i> About <span>Us</span></h2>
+      <div style="background:white; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow);">
+        <p style="font-size:1.05rem; line-height:1.8; margin-bottom:1rem;">
+          <strong>CK TechFix</strong> is a Lusaka-based mobile phone repair service that brings professional smartphone repairs directly to your doorstep. We specialize in Samsung, iPhone, and Google Pixel repairs, saving you the time and inconvenience of visiting a repair shop.
+        </p>
+        <p style="font-size:1.05rem; line-height:1.8; margin-bottom:1rem;">
+          Founded by <strong>Chola Kachamba</strong>, CK TechFix was built on a simple idea: quality phone repairs should be convenient, affordable, and accessible to everyone.
+        </p>
+        <p style="font-size:1.05rem; line-height:1.8; margin-bottom:1rem;">
+          Our services include LCD and OLED replacements, battery replacements, charging port repairs, back glass replacements, camera repairs, water damage diagnostics, software troubleshooting, and other hardware repairs.
+        </p>
+        <p style="font-size:1.05rem; line-height:1.8;">
+          At CK TechFix, we believe your smartphone is an essential part of your daily life. That's why we are committed to providing fast, reliable, and professional repair solutions with quality parts and exceptional customer service.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1.5rem;">
+          <div style="background:#f0f5fe; padding:1.5rem; border-radius:var(--radius); border-left:4px solid var(--accent);">
+            <h3 style="color:var(--primary);"><i class="fas fa-bullseye" style="color:var(--secondary);"></i> Our Mission</h3>
+            <p style="color:#1f2a40;">To deliver convenient, professional, and trusted mobile phone repair services directly to our customers.</p>
+          </div>
+          <div style="background:#f0f5fe; padding:1.5rem; border-radius:var(--radius); border-left:4px solid var(--accent);">
+            <h3 style="color:var(--primary);"><i class="fas fa-eye" style="color:var(--secondary);"></i> Our Vision</h3>
+            <p style="color:#1f2a40;">To become Zambia's most trusted doorstep mobile phone repair brand.</p>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:2rem; margin-top:1.5rem; padding:1.5rem; background:#f8faff; border-radius:var(--radius); flex-wrap:wrap;">
+          <div style="width:100px; height:100px; border-radius:50%; background:#e4edfa; display:flex; align-items:center; justify-content:center; font-size:3.5rem; color:var(--secondary); border:4px solid var(--accent);">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <div style="flex:1;">
+            <h3 style="color:var(--primary);">Chola Kachamba</h3>
+            <p style="color:var(--secondary); font-weight:600;">Founder & Lead Technician</p>
+            <p style="color:#1f2a40;">With over 8 years of experience in mobile repair, Chola started CK TechFix to bring high-quality, trustworthy repairs to people's doorsteps.</p>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:1.5rem; padding:1.2rem; background:#e4edfa; border-radius:60px; font-size:1.2rem; font-weight:700; color:var(--primary);">
+          <i class="fas fa-tools" style="color:var(--accent);"></i> CK TechFix – Doorstep Tech GURU <i class="fas fa-smile" style="color:var(--accent);"></i>
+          <div style="font-weight:400; font-size:1rem; margin-top:4px;">We Fix. You Relax.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTACT PAGE ===== -->
+    <div class="page-section" id="page-contact">
+      <h2 class="section-title"><i class="fas fa-phone-alt"></i> Contact <span>Us</span></h2>
+      <p style="color:#6a7a8a; margin-bottom:1.5rem;">Get in touch with CK TechFix – we're here to help with your phone repairs and questions.</p>
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h3><i class="fas fa-address-card"></i> Get in Touch</h3>
+          <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><strong>Location</strong><br />Lusaka, Zambia (we come to your doorstep)</div></div>
+          <div class="contact-item"><i class="fas fa-phone"></i><div><strong>Phone</strong><br />+260 963 414 738</div></div>
+          <div class="contact-item"><i class="fas fa-envelope"></i><div><strong>Email</strong><br />cktechfixzm@gmail.com</div></div>
+          <div class="contact-item"><i class="fas fa-clock"></i><div><strong>Working Hours</strong><br />Mon–Sat: 8:00 AM – 8:00 PM<br />Sunday: Closed</div></div>
+          <div style="display:flex; gap:1.2rem; font-size:1.8rem; color:var(--primary); margin-top:1.2rem;">
+            <a href="https://www.facebook.com/profile.php?id=61583590026258" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/cktechfix" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@cktechfix" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@cktechfix" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/260963414738" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+          </div>
+        </div>
+        <div class="contact-form-card">
+          <h3><i class="fas fa-paper-plane"></i> Send a Message</h3>
+          <form id="contactForm">
+            <div class="form-group"><label>Full Name</label><input type="text" id="contactName" placeholder="Your name" required /></div>
+            <div class="form-group"><label>Email</label><input type="email" id="contactEmail" placeholder="you@example.com" required /></div>
+            <div class="form-group"><label>Phone</label><input type="tel" id="contactPhone" placeholder="+260 963 414 738" /></div>
+            <div class="form-group"><label>Subject</label>
+              <select id="contactSubject">
+                <option>General Inquiry</option><option>Book a Repair</option>
+                <option>Accessories</option><option>Feedback</option><option>Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Message</label><textarea id="contactMessage" rows="3" placeholder="Tell us how we can help..."></textarea></div>
+            <button type="submit" class="btn-submit"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+      <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Your cart is empty</p></div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Total:</span><span id="cartTotal">ZMW 0</span></div>
+      <button class="btn-checkout" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-content">
+      <h2><i class="fas fa-clipboard-check"></i> Checkout</h2>
+      <form id="checkoutForm">
+        <div class="form-group"><label>Full Name</label><input type="text" id="checkoutName" placeholder="Your full name" required /></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="checkoutPhone" placeholder="+260 963 414 738" required /></div>
+        <div class="form-group"><label>Delivery Location</label><input type="text" id="checkoutLocation" placeholder="e.g. Kabulonga, Lusaka" required /></div>
+        <div class="form-group"><label>Order Notes</label><textarea id="checkoutNotes" rows="2" placeholder="Any special instructions..."></textarea></div>
+        <div class="order-summary">
+          <p><span>Items:</span> <span id="orderItemCount">0</span></p>
+          <p><span>Total:</span> <span id="orderTotal">ZMW 0</span></p>
+        </div>
+        <button type="submit" class="btn-place-order"><i class="fab fa-whatsapp"></i> Send Order via WhatsApp</button>
+        <button type="button" class="btn-close-checkout" id="closeCheckout">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMessage">Added to cart!</span></div>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="max-width:1280px; margin:2rem auto 0;">
+    <p>© 2026 CK TechFix – Doorstep Tech GURU. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ===== PRODUCT DATA =====
+    const products = [
+      { id: 1, name: 'iPhone Clear Case', desc: 'Slim, transparent, scratch-resistant.', price: 150, category: 'cases', img: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop&crop=center' },
+      { id: 2, name: 'Magnetic MagSafe Case', desc: 'Built-in magnets, MagSafe compatible.', price: 220, category: 'cases', img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=400&h=300&fit=crop&crop=center' },
+      { id: 3, name: 'Silicone Case', desc: 'Soft-touch, anti-slip, multiple colors.', price: 120, category: 'cases', img: 'https://images.unsplash.com/photo-1616252451360-60ce6b2b4f0f?w=400&h=300&fit=crop&crop=center' },
+      { id: 4, name: 'Rugged Armor Case', desc: 'Military-grade drop protection.', price: 250, category: 'cases', img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop&crop=center' },
+      { id: 5, name: 'Leather Case', desc: 'Premium genuine leather, elegant design.', price: 300, category: 'cases', img: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop&crop=center' },
+      { id: 6, name: 'Samsung Transparent Case', desc: 'Ultra-clear, anti-yellowing.', price: 140, category: 'cases', img: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=300&fit=crop&crop=center' },
+      { id: 7, name: 'Samsung Rugged Case', desc: 'Shockproof with built-in kickstand.', price: 230, category: 'cases', img: 'https://images.unsplash.com/photo-1616252451360-60ce6b2b4f0f?w=400&h=300&fit=crop&crop=center' },
+      { id: 8, name: 'Tecno Spark Case', desc: 'Perfect fit for Tecno Spark series.', price: 100, category: 'cases', img: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop&crop=center' },
+      { id: 9, name: 'Infinix Hot Case', desc: 'Slim-fit with precise cutouts.', price: 110, category: 'cases', img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=400&h=300&fit=crop&crop=center' },
+      { id: 10, name: 'Redmi Note Case', desc: 'Protective with raised edges.', price: 120, category: 'cases', img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop&crop=center' },
+      { id: 11, name: '20W USB-C Charger', desc: 'Fast charging for iPhone/Android.', price: 150, category: 'chargers', img: 'https://images.unsplash.com/photo-1629131726692-1b7fe0c1b0d4?w=400&h=300&fit=crop&crop=center' },
+      { id: 12, name: '25W Samsung Fast Charger', desc: 'Super fast for Galaxy devices.', price: 180, category: 'chargers', img: 'https://images.unsplash.com/photo-1629131726692-1b7fe0c1b0d4?w=400&h=300&fit=crop&crop=center' },
+      { id: 13, name: '45W Super Fast Charger', desc: 'Ultra-fast for laptops & phones.', price: 280, category: 'chargers', img: 'https://images.unsplash.com/photo-1629131726692-1b7fe0c1b0d4?w=400&h=300&fit=crop&crop=center' },
+      { id: 14, name: 'USB-C Cable', desc: '2m braided, fast charging support.', price: 80, category: 'chargers', img: 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400&h=300&fit=crop&crop=center' },
+      { id: 15, name: 'Lightning Cable', desc: 'MFi certified, 2m braided.', price: 100, category: 'chargers', img: 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400&h=300&fit=crop&crop=center' },
+      { id: 16, name: 'Car Charger', desc: 'Dual USB, fast charging support.', price: 130, category: 'chargers', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' },
+      { id: 17, name: '65W GaN Charger', desc: 'Compact GaN, charges laptops.', price: 350, category: 'chargers', img: 'https://images.unsplash.com/photo-1629131726692-1b7fe0c1b0d4?w=400&h=300&fit=crop&crop=center' },
+      { id: 18, name: 'Tempered Glass Protector', desc: '9H hardness, bubble-free.', price: 120, category: 'protectors', img: 'https://images.unsplash.com/photo-1580915411950-3e2e7619c8a5?w=400&h=300&fit=crop&crop=center' },
+      { id: 19, name: 'Privacy Screen Protector', desc: 'Anti-spy, 9H hardness.', price: 180, category: 'protectors', img: 'https://images.unsplash.com/photo-1580915411950-3e2e7619c8a5?w=400&h=300&fit=crop&crop=center' },
+      { id: 20, name: 'Ultra-Thin Glass Protector', desc: '0.2mm, edge-to-edge coverage.', price: 140, category: 'protectors', img: 'https://images.unsplash.com/photo-1580915411950-3e2e7619c8a5?w=400&h=300&fit=crop&crop=center' },
+      { id: 21, name: 'Matte Screen Protector', desc: 'Anti-glare, fingerprint-resistant.', price: 160, category: 'protectors', img: 'https://images.unsplash.com/photo-1580915411950-3e2e7619c8a5?w=400&h=300&fit=crop&crop=center' },
+      { id: 22, name: 'Samsung Glass Protector', desc: 'Precision-cut for S24 Ultra.', price: 150, category: 'protectors', img: 'https://images.unsplash.com/photo-1580915411950-3e2e7619c8a5?w=400&h=300&fit=crop&crop=center' },
+      { id: 23, name: 'iPhone Privacy Glass', desc: 'Side-view privacy, 9H hardness.', price: 200, category: 'protectors', img: 'https://images.unsplash.com/photo-1580915411950-3e2e7619c8a5?w=400&h=300&fit=crop&crop=center' },
+      { id: 24, name: 'Wired Earphones', desc: 'Hi-fi sound, tangle-free cable.', price: 80, category: 'audio', img: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=300&fit=crop&crop=center' },
+      { id: 25, name: 'Bluetooth Earbuds', desc: 'Wireless stereo, 24hr battery.', price: 350, category: 'audio', img: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop&crop=center' },
+      { id: 26, name: 'AirPods Pro Style Earbuds', desc: 'Noise cancellation, IPX4.', price: 450, category: 'audio', img: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop&crop=center' },
+      { id: 27, name: 'Neckband Earphones', desc: 'Magnetic, 14hr playback.', price: 250, category: 'audio', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' },
+      { id: 28, name: 'Bluetooth Speaker', desc: 'Portable, waterproof, 360° sound.', price: 400, category: 'audio', img: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop&crop=center' },
+      { id: 29, name: 'Over-Ear Headphones', desc: 'Studio-quality sound, memory foam.', price: 550, category: 'audio', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop&crop=center' },
+      { id: 30, name: '10,000mAh Power Bank', desc: 'Compact, dual USB, fast charge.', price: 280, category: 'power', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' },
+      { id: 31, name: '20,000mAh Power Bank', desc: 'High capacity, triple USB, display.', price: 420, category: 'power', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' },
+      { id: 32, name: 'Magnetic Wireless Power Bank', desc: 'MagSafe compatible, 15W wireless.', price: 380, category: 'power', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' },
+      { id: 33, name: 'Fast-Charging Power Bank', desc: '65W output, charges laptops.', price: 500, category: 'power', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' },
+      { id: 34, name: 'Mini Power Bank', desc: 'Ultra-compact, built-in cables.', price: 180, category: 'power', img: 'https://images.unsplash.com/photo-1605464315542-bda3e2f3f0d0?w=400&h=300&fit=crop&crop=center' }
+    ];
+
+    // ===== STATE =====
+    let cart = [];
+    let currentCategory = 'all';
+
+    // ===== DOM ELEMENTS =====
+    const productGrid = document.getElementById('productGrid');
+    const cartItems = document.getElementById('cartItems');
+    const cartBadge = document.getElementById('cartBadge');
+    const hamburgerBadge = document.getElementById('hamburgerBadge');
+    const mobileCartBadge = document.getElementById('mobileCartBadge');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const checkoutModal = document.getElementById('checkoutModal');
+    const closeCheckout = document.getElementById('closeCheckout');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+
+    // ===== NAVIGATION =====
+    function navigateTo(page) {
+      document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+      document.getElementById(`page-${page}`).classList.add('active');
+      document.querySelectorAll('.nav-desktop a').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-desktop a').forEach(el => {
+        if (el.dataset.page === page) el.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== RENDER PRODUCTS =====
+    function renderProducts(category = 'all') {
+      const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+      productGrid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          <div class="info">
+            <h4>${p.name}</h4>
+            <p class="desc">${p.desc}</p>
+            <span class="price">ZMW ${p.price}</span>
+            <button class="btn-add" onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ===== CART FUNCTIONS =====
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      const existing = cart.find(item => item.id === productId);
+      if (existing) { existing.qty += 1; } 
+      else { cart.push({ ...product, qty: 1 }); }
+      updateCart();
+      showToast(`${product.name} added!`);
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      updateCart();
+    }
+
+    function updateQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) { removeFromCart(productId); return; }
+      updateCart();
+    }
+
+    function updateCart() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartBadge.textContent = totalItems;
+      hamburgerBadge.textContent = totalItems;
+      hamburgerBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+      mobileCartBadge.textContent = totalItems;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `<div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Your cart is empty</p></div>`;
+      } else {
+        cartItems.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}" />
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <span class="price">ZMW ${item.price}</span>
+            </div>
+            <div class="cart-item-qty">
+              <button onclick="updateQty(${item.id}, -1)">-</button>
+              <span>${item.qty}</span>
+              <button onclick="updateQty(${item.id}, 1)">+</button>
+            </div>
+            <span class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></span>
+          </div>
+        `).join('');
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartTotal.textContent = `ZMW ${total}`;
+      document.getElementById('orderItemCount').textContent = totalItems;
+      document.getElementById('orderTotal').textContent = `ZMW ${total}`;
+    }
+
+    // ===== CART SIDEBAR =====
+    function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+    closeCartBtn.addEventListener('click', closeCart);
+
+    // ===== TOAST =====
+    let toastTimeout;
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // ===== CHECKOUT =====
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) { showToast('Your cart is empty!'); return; }
+      checkoutModal.classList.add('open');
+    });
+    closeCheckout.addEventListener('click', () => checkoutModal.classList.remove('open'));
+
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('checkoutName').value.trim();
+      const phone = document.getElementById('checkoutPhone').value.trim();
+      const location = document.getElementById('checkoutLocation').value.trim();
+      const notes = document.getElementById('checkoutNotes').value.trim();
+      if (!name || !phone || !location) { showToast('Please fill in all required fields.'); return; }
+
+      let items = cart.map(item => `  • ${item.name} x${item.qty} = ZMW ${item.price * item.qty}`).join('\n');
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const msg = `🛒 *NEW ORDER - CK TechFix Store*\n\n👤 *Customer:* ${name}\n📞 *Phone:* ${phone}\n📍 *Location:* ${location}\n\n📦 *Order Items:*\n${items}\n\n💰 *Total:* ZMW ${total}\n\n📝 *Notes:* ${notes || 'None'}\n\nThank you for shopping with CK TechFix!`;
+      window.open(`https://wa.me/260963414738?text=${encodeURIComponent(msg)}`, '_blank');
+      cart = []; updateCart(); checkoutModal.classList.remove('open'); closeCart(); showToast('Order sent!');
+      this.reset();
+    });
+
+    // ===== BOOKING FORM =====
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('bookName').value.trim();
+      const phone = document.getElementById('bookPhone').value.trim();
+      const email = document.getElementById('bookEmail').value.trim();
+      const location = document.getElementById('bookLocation').value.trim();
+      const model = document.getElementById('bookModel').value.trim();
+      const issue = document.getElementById('bookIssue').value;
+      const dateTime = document.getElementById('bookDateTime').value;
+      const info = document.getElementById('bookInfo').value.trim();
+      if (!name || !phone || !location || !model || !issue || !dateTime) { showToast('Please fill in all required fields.'); return; }
+      const msg = `📱 *NEW BOOKING - CK TechFix*\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n📍 Location: ${location}\n📱 Model: ${model}\n🔧 Issue: ${issue}\n📅 Date/Time: ${dateTime}\n💬 Info: ${info}`;
+      window.open(`https://wa.me/260963414738?text=${encodeURIComponent(msg)}`, '_blank');
+      showToast('Booking sent!');
+      this.reset();
+    });
+
+    // ===== CONTACT FORM =====
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const phone = document.getElementById('contactPhone').value.trim();
+      const subject = document.getElementById('contactSubject').value;
+      const message = document.getElementById('contactMessage').value.trim();
+      if (!name || !email || !message) { showToast('Please fill in all required fields.'); return; }
+      const msg = `📧 *New Message - CK TechFix*\n\n👤 Name: ${name}\n📧 Email: ${email}\n📞 Phone: ${phone}\n📋 Subject: ${subject}\n\n💬 Message:\n${message}`;
+      window.open(`https://wa.me/260963414738?text=${encodeURIComponent(msg)}`, '_blank');
+      showToast('Message sent!');
+      this.reset();
+    });
+
+    // ===== CATEGORY FILTER =====
+    document.querySelectorAll('.category-bar button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.category-bar button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentCategory = this.dataset.category;
+        renderProducts(currentCategory);
+      });
+    });
+
+    // ===== MOBILE MENU =====
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (mobileMenu.classList.contains('open')) closeMenu();
+        if (cartSidebar.classList.contains('open')) closeCart();
+        if (checkoutModal.classList.contains('open')) checkoutModal.classList.remove('open');
+      }
+    });
+
+    // ===== PRELOADER =====
+    const preloader = document.getElementById('preloader');
+    window.addEventListener('load', () => {
+      setTimeout(() => preloader.classList.add('hidden'), 600);
+    });
+
+    // ===== INIT =====
+    renderProducts('all');
+    updateCart();
+  </script>
+</body>
+</html>
